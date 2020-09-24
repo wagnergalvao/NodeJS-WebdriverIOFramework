@@ -3,15 +3,23 @@ describe('Validar links da página inicial', () => {
   it('Deve abrir a página de contato ao clicar no botão de contato', () => {
     browser.maximizeWindow();
     browser.url('/')
+    expect(browser).toHaveUrlContaining('/');
     expect(browser).toHaveTitle('WebDriverUniversity.com');
-    $('#contact-us').click();
+    browser.$('#contact-us').click();
+    browser.switchToWindow(browser.getWindowHandles()[1]);
+    expect(browser).toHaveUrlContaining('/Contact-Us/contactus.html');
+    expect(browser.$('.//h2[@name="contactme"]')).toHaveText('CONTACT US');
   });
 
   it('Deve abrir a página de login do portal ao clicar no botão login', () => {
     browser.maximizeWindow();
     browser.url('/')
+    expect(browser).toHaveUrlContaining('/');
     expect(browser).toHaveTitle('WebDriverUniversity.com');
     browser.$('#login-portal').click();
+    browser.switchToWindow(browser.getWindowHandles()[2]);
+    expect(browser).toHaveUrlContaining('/Login-Portal/index.html');
+    expect(browser.$('#login-button')).toHaveText('Login');
   });
 });
 

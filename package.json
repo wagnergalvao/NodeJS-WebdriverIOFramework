@@ -4,7 +4,7 @@
   "description": "Webdriver Framework Udemy",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "wdio wdio.conf.js"
   },
   "keywords": [],
   "author": "Wagner Galvao",
@@ -16,6 +16,7 @@
     "@wdio/selenium-standalone-service": "^6.4.7",
     "@wdio/spec-reporter": "^6.4.7",
     "@wdio/sync": "^6.5.0",
+    "chi": "0.0.10",
     "chromedriver": "^85.0.1",
     "wdio-chromedriver-service": "^6.0.4"
   }
