@@ -15,7 +15,7 @@ describe('Teste a página inicial da webdriveruniversity', function () {
       .$('#udemy-promo-thumbnail')
       .getCSSProperty('height')
       .value
-    ).toBe('350pxs');
+    ).toBe('350px');
 
     expect(browser
       .$('#udemy-promo-thumbnail')

@@ -11,5 +11,5 @@ describe('Verificar se o botão é clicável após o carregador Ajax concluir o 
 		browser.pause(7000);
 		browser.$('#button1').click();
 		browser.pause(7000);
-	}).timeout(20000);
+	}).timeout(30000);
 })

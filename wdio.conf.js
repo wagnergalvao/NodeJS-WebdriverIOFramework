@@ -8,7 +8,7 @@ if (process.env.SERVER === 'prod') {
     baseUrl = "http://www.webdriveruniversity.com";
 }
 
-var timeout = process.env.DEBUG ? 99999999 : 10000;
+var timeout = process.env.DEBUG ? 99999999 : 40000;
 
 exports.config = {
     //
