@@ -2,6 +2,7 @@ describe('Validar links da página inicial', () => {
 
   it('Deve abrir a página de contato ao clicar no botão CONTACT US', () => {
     browser.maximizeWindow();
+    //    browser.debug();
     browser.url('/')
     expect(browser).toHaveUrlContaining('/');
     expect(browser).toHaveTitle('WebDriverUniversity.com');
