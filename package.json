@@ -16,8 +16,10 @@
     "@wdio/selenium-standalone-service": "^6.4.7",
     "@wdio/spec-reporter": "^6.4.7",
     "@wdio/sync": "^6.5.0",
-    "chi": "0.0.10",
+    "chai": "^4.2.0",
     "chromedriver": "^85.0.1",
+    "faker-br": "^0.3.0",
     "wdio-chromedriver-service": "^6.0.4"
-  }
+  },
+  "dependencies": {}
 }
