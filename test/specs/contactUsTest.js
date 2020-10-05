@@ -1,3 +1,6 @@
+function removeAcents(text) {
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+};
 var faker = require('faker-br');
 var firstName;
 var lastName;
@@ -12,9 +15,11 @@ beforeEach(() => {
   lastName = faker.name.lastName();
   email = `${firstName.toLowerCase()
     //    + faker.random.objectElement("!#$%&'*+-=?^_`~;.")
-    + faker.random.objectElement("._-")
+    + faker.random.objectElement("-._")
     + lastName.toLowerCase()
     }@${faker.internet.email().split('@')[1]}`;
+  email = removeAcents(email);
+  console.log('e-mail: ' + email);
 })
 
 describe('Testar o formulário de contato', () => {
@@ -57,7 +62,7 @@ describe('Testar o formulário de contato', () => {
     browser.$('[name="message"]').setValue(faker.lorem.paragraphs(2));
     browser.$('[type="submit"]').click();
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
-    expect(browser.$('body')).toHaveTextContaining('Error: all fields are required');
+    expect(browser.$('body')).toHaveText('Error: all fields are required');
   });
 
   it('Não deve enviar mensagem sem preencher o campo Last Name', () => {
@@ -66,7 +71,7 @@ describe('Testar o formulário de contato', () => {
     browser.$('[name="message"]').setValue(faker.lorem.paragraphs(2));
     browser.$('[type="submit"]').click();
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
-    expect(browser.$('body')).toHaveTextContaining('Error: all fields are required');
+    expect(browser.$('body')).toHaveText('Error: all fields are required');
   });
 
   it('Não deve enviar mensagem sem preencher o campo Email', () => {
@@ -86,7 +91,7 @@ describe('Testar o formulário de contato', () => {
     browser.$('[name="email"]').setValue(email);
     browser.$('[type="submit"]').click();
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
-    expect(browser.$('body')).toHaveTextContaining('Error: all fields are required');
+    expect(browser.$('body')).toHaveText('Error: all fields are required');
   });
 
 });
