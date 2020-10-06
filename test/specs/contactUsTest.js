@@ -1,5 +1,5 @@
 var faker = require('faker-br');
-const { removeAcents } = require("../../utils/removeAcents.js");
+const { removeAccents } = require("../../utils/removeAccents.js");
 var firstName;
 var lastName;
 var email;
@@ -16,8 +16,7 @@ beforeEach(() => {
     + faker.random.objectElement("-._")
     + lastName.toLowerCase()
     }@${faker.internet.email().split('@')[1]}`;
-  email = removeAcents(email);
-  console.log('e-mail: ' + email);
+  email = removeAccents(email);
 })
 
 describe('Testar o formulário de contato', () => {
