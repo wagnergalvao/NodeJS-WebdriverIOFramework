@@ -74,6 +74,16 @@ describe('Testar o formulário de contato', () => {
     expect(browser.$('body')).toHaveText('Error: all fields are required');
   });
 
+  it('Não deve enviar mensagem com o campo Email inválido', () => {
+    browser.$('[name="first_name"]').setValue(firstName);
+    browser.$('[name="last_name"]').setValue(lastName);
+    browser.$('[name="email"]').setValue('q!w#e$r%t¨@gmail.com');
+    browser.$('[name="message"]').setValue(faker.lorem.paragraphs(2));
+    browser.$('[type="submit"]').click();
+    expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
+    expect(browser.$('body')).toHaveText('Error: Invalid email address');
+  });
+
   it('Não deve enviar mensagem sem preencher o campo Email', () => {
     browser.$('[name="first_name"]').setValue(firstName);
     browser.$('[name="last_name"]').setValue(lastName);
