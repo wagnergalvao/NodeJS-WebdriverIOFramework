@@ -1,7 +1,5 @@
-function removeAcents(text) {
-  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-};
 var faker = require('faker-br');
+const { removeAcents } = require("../../utils/removeAcents.js");
 var firstName;
 var lastName;
 var email;
