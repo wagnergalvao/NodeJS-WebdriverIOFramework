@@ -19,6 +19,7 @@
     "chai": "^4.2.0",
     "chromedriver": "^85.0.1",
     "faker-br": "^0.3.0",
+    "sync-request": "^6.1.0",
     "wdio-chromedriver-service": "^6.0.4"
   },
   "dependencies": {}
