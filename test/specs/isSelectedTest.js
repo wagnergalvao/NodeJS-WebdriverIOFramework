@@ -1,7 +1,7 @@
 const textRadioButtons = '#radio-buttons-selected-disabled';
-const radioLettuce = '#radio-buttons-selected-disabled [type="radio"][type="radio"][name="vegetable"][value="lettuce"]';
-const radioCabbage = '#radio-buttons-selected-disabled [type="radio"][type="radio"][name="vegetable"][value="cabbage"]';
-const radioPumpkin = '#radio-buttons-selected-disabled [type="radio"][type="radio"][name="vegetable"][value="pumpkin"]';
+const radioLettuce = '#radio-buttons-selected-disabled [type="radio"][name="vegetable"][value="lettuce"]';
+const radioCabbage = '#radio-buttons-selected-disabled [type="radio"][name="vegetable"][value="cabbage"]';
+const radioPumpkin = '#radio-buttons-selected-disabled [type="radio"][name="vegetable"][value="pumpkin"]';
 const textSelect = '#fruit-selects';
 const selectOptionApple = '#fruit-selects option[value="apple"]';
 const selectOptionOrange = '#fruit-selects option[value="orange"]';
