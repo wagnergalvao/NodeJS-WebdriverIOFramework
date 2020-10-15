@@ -1,7 +1,9 @@
+var faker = require('faker-br');
 const { doGetAttribute } = require("../utils/doGetAttribute");
 const { doGetTagName } = require("../utils/doGetTagName");
 const { doGetText } = require("../utils/doGetText");
 const { doGetValue } = require("../utils/doGetValue");
+const { doRemoveAccents } = require('../utils/doRemoveAccents');
 const { doSwitchToWindow } = require("../utils/doSwitchToWindow");
 const { doWaitForDisplayed } = require("../utils/doWaitForDisplayed");
 //  Page Elements
@@ -47,6 +49,18 @@ const resetButton = {
 const submitButton = {
   locator: '#form_buttons [type="submit"][value="SUBMIT"]'
 };
+// Fake contact
+const fakeContact = {
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  emailAddress: '',
+  comments: faker.lorem.words(20)
+};
+fakeContact.emailAddress = doRemoveAccents(`${fakeContact.firstName.toLowerCase()
+  //    + faker.random.objectElement("!#$%&'*+-=?^_`~;.")
+  + faker.random.objectElement("-._")
+  + fakeContact.lastName.toLowerCase()
+  }@${faker.internet.email().split('@')[1]}`)
 //  Exports
 exports.accessContactUsPage = () => {
   browser.maximizeWindow();

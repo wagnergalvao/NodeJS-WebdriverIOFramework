@@ -1,4 +1,7 @@
-const { accessContactUsPage, clickOnHomePageLink } = require("../../pages/contactUs.page");
+const {
+  accessContactUsPage,
+  clickOnHomePageLink
+} = require("../../pages/contactUs.page");
 
 beforeEach(() => {
   accessContactUsPage();
