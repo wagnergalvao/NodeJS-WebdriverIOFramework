@@ -1,9 +1,9 @@
-const { getAttribute } = require("../utils/getAttribute");
-const { getTagName } = require("../utils/getTagName");
-const { getText } = require("../utils/getText");
-const { switchToWindow } = require("../utils/switchToWindow");
-const { waitForDisplayed } = require("../utils/waitForDisplayed");
-
+const { doGetAttribute } = require("../utils/doGetAttribute");
+const { doGetTagName } = require("../utils/doGetTagName");
+const { doGetText } = require("../utils/doGetText");
+const { doGetValue } = require("../utils/doGetValue");
+const { doSwitchToWindow } = require("../utils/doSwitchToWindow");
+const { doWaitForDisplayed } = require("../utils/doWaitForDisplayed");
 //  Page Elements
 const contactUsPage = {
   title: 'WebDriver | Contact Us',
@@ -22,15 +22,21 @@ const homePageLink = {
   tag: 'a',
   href: '../index.html',
   text: 'WebdriverUniversity.com (New Approach To Learning)-US',
-  homeTitle: 'WebDriverUniversity.com',
-  homeUri: '/'
+  homeTitle: 'WebDriverUniversity.com'
 };
+const resetButton = {
+  locator: '#form_buttons [type="reset"][value="RESET"]'
+};
+const submitButton = {
+  locator: '#form_buttons [type="submit"][value="SUBMIT"]'
+};
+//  Exports
 exports.accessContactUsPage = () => {
   browser.maximizeWindow();
   browser.url(contactUsPage.homeUri);
-  waitForDisplayed(contactUsPage.homeButton);
+  doWaitForDisplayed(contactUsPage.homeButton);
   browser.$(contactUsPage.homeButton).click();
-  switchToWindow(1);
+  doSwitchToWindow(1);
   this.validateContactUsPage()
 };
 exports.openContactUsPage = () => {
@@ -40,13 +46,15 @@ exports.openContactUsPage = () => {
 };
 exports.clickOnHomePageLink = () => {
   browser.maximizeWindow();
-  waitForDisplayed(homePageLink.locator);
+  doWaitForDisplayed(homePageLink.locator);
   browser.$(homePageLink.locator).click();
-  expect(browser).toHaveUrl(getAttribute(homePageLink.locator, 'href'))
-  waitForDisplayed(contactUsPage.homeButton);
+  expect(browser).toHaveUrl(doGetAttribute(homePageLink.locator, 'href'))
+  doWaitForDisplayed(contactUsPage.homeButton);
 };
 exports.validateContactUsPage = () => {
-  waitForDisplayed(contactUsHeader.locator);
-  expect(getTagName(contactUsHeader.locator)).toBe(contactUsHeader.tag);
-  expect(getText(contactUsHeader.locator)).toBe(contactUsHeader.text);
+  doWaitForDisplayed(contactUsHeader.locator);
+  expect(doGetTagName(contactUsHeader.locator)).toBe(contactUsHeader.tag);
+  expect(doGetText(contactUsHeader.locator)).toBe(contactUsHeader.text);
+  expect(doGetValue(resetButton.locator));
+  expect(doGetValue(submitButton.locator));
 };
