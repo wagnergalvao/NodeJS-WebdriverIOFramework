@@ -1,3 +1,3 @@
-exports.getTagName = (element) => {
+exports.doGetTagName = (element) => {
   return browser.$(element).getTagName();
 };

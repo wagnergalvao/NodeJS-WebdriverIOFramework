@@ -1,5 +1,5 @@
 var faker = require('faker-br');
-const { removeAccents } = require("../../utils/removeAccents.js");
+const { doRemoveAccents } = require("../../utils/doRemoveAccents.js");
 var request = require('sync-request');
 
 before(() => {
@@ -27,15 +27,15 @@ beforeEach(() => {
   browser.url('/Contact-Us/contactus.html');
   expect(browser).toHaveUrlContaining('/Contact-Us/contactus.html');
   expect(browser.$('.//h2[@name="contactme"]')).toHaveText('CONTACT US');
-  firstName = faker.name.firstName();
-  lastName = faker.name.lastName();
-  email = `${firstName.toLowerCase()
+  firstNameFake = faker.name.firstName();
+  lastNameFake = faker.name.lastName();
+  email = `${firstNameFake.toLowerCase()
     //    + faker.random.objectElement("!#$%&'*+-=?^_`~;.")
     + faker.random.objectElement("-._")
-    + lastName.toLowerCase()
+    + lastNameFake.toLowerCase()
     }@${faker.internet.email().split('@')[1]}`;
-  email = removeAccents(email);
-  message = faker.lorem.words(faker.random.number(10) + 1);
+  emailFake = doRemoveAccents(email);
+  messageFake = faker.lorem.words(faker.random.number(10) + 1);
 })
 
 
@@ -47,8 +47,8 @@ describe('Testar o formulário de contato', () => {
 
     it(`Deve enviar mensagem com o email ${contactusDetail.email.toLowerCase()}`, () => {
       browser.submitContactUsForm(
-        faker.name.firstName(),
-        faker.name.lastName(),
+        firstNameFake,
+        lastNameFake,
         contactusDetail.email.toLowerCase(),
         contactusDetail.body
       );
@@ -68,9 +68,9 @@ describe('Testar o formulário de contato', () => {
   it('Não deve enviar mensagem sem preencher o campo First Name', () => {
     browser.submitContactUsForm(
       null,
-      faker.name.lastName(),
-      email,
-      message
+      lastNameFake,
+      emailFake,
+      messageFake
     );
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
     expect(browser.$('body')).toHaveText('Error: all fields are required');
@@ -78,10 +78,10 @@ describe('Testar o formulário de contato', () => {
 
   it('Não deve enviar mensagem sem preencher o campo Last Name', () => {
     browser.submitContactUsForm(
-      faker.name.firstName(),
+      firstNameFake,
       null,
-      email,
-      message
+      emailFake,
+      messageFake
     );
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
     expect(browser.$('body')).toHaveText('Error: all fields are required');
@@ -89,10 +89,10 @@ describe('Testar o formulário de contato', () => {
 
   it('Não deve enviar mensagem com o campo Email inválido', () => {
     browser.submitContactUsForm(
-      faker.name.firstName(),
-      faker.name.lastName(),
+      firstNameFake,
+      lastNameFake,
       'q!w#e$r%t¨@gmail.com',
-      message
+      messageFake
     );
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
     expect(browser.$('body')).toHaveText('Error: Invalid email address');
@@ -100,10 +100,10 @@ describe('Testar o formulário de contato', () => {
 
   it('Não deve enviar mensagem sem preencher o campo Email', () => {
     browser.submitContactUsForm(
-      faker.name.firstName(),
-      faker.name.lastName(),
+      firstNameFake,
+      lastNameFake,
       null,
-      message
+      messageFake
     );
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
     expect(browser.$('body')).toHaveTextContaining(
@@ -113,8 +113,8 @@ describe('Testar o formulário de contato', () => {
 
   it('Não deve enviar mensagem sem preencher o campo Comentários', () => {
     browser.submitContactUsForm(
-      faker.name.firstName(),
-      faker.name.lastName(),
+      firstNameFake,
+      lastNameFake,
       email
     );
     expect(browser).toHaveUrlContaining('/Contact-Us/contact_us.php');
