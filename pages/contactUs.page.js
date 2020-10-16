@@ -4,6 +4,7 @@ const { doGetTagName } = require("../utils/doGetTagName");
 const { doGetText } = require("../utils/doGetText");
 const { doGetValue } = require("../utils/doGetValue");
 const { doRemoveAccents } = require('../utils/doRemoveAccents');
+const { doSetValue } = require('../utils/doSetValue');
 const { doSwitchToWindow } = require("../utils/doSwitchToWindow");
 const { doWaitForDisplayed } = require("../utils/doWaitForDisplayed");
 //  Page Elements
@@ -67,7 +68,8 @@ exports.accessContactUsPage = () => {
   browser.url(contactUsPage.homeUri);
   doWaitForDisplayed(contactUsPage.homeButton);
   browser.$(contactUsPage.homeButton).click();
-  doSwitchToWindow(1);
+  doWaitForDisplayed(contactUsPage.homeButton);
+  doSwitchToWindow(browser.getWindowHandles().length - 1);
   this.validateContactUsPage()
 };
 exports.openContactUsPage = () => {
@@ -81,6 +83,12 @@ exports.clickOnHomePageLink = () => {
   browser.$(homePageLink.locator).click();
   expect(browser).toHaveUrl(doGetAttribute(homePageLink.locator, 'href'))
   doWaitForDisplayed(contactUsPage.homeButton);
+};
+exports.fillFormCorrectly = () => {
+  doSetValue(firstNameField.locator, fakeContact.firstName);
+  doSetValue(lastNameField.locator, fakeContact.lastName);
+  doSetValue(emailAddressField.locator, fakeContact.emailAddress);
+  doSetValue(commentsField.locator, fakeContact.comments);
 };
 exports.validateContactUsPage = () => {
   doWaitForDisplayed(contactUsHeader.locator);
