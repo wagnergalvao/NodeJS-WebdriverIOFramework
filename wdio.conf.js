@@ -33,8 +33,8 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        'pages/*.page.js',
-        'utils/*.js'
+        '../../pages/*.page.js',
+        '../../utils/*.js'
     ],
     //
     // ============

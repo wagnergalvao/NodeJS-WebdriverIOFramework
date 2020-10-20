@@ -65,19 +65,24 @@ const unsuccessfulMessage = {
   invalidEmailText: 'Error: Invalid email address'
 };
 // Fake contact
-const fakeContact = {
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  emailAddress: '',
-  comments: faker.lorem.words(20)
-};
-fakeContact.emailAddress = doRemoveAccents(`${fakeContact.firstName.toLowerCase()
-  //    + faker.random.objectElement("!#$%&'*+-=?^_`~;.")
-  + faker.random.objectElement("-._")
-  + fakeContact.lastName.toLowerCase()
-  }@${faker.internet.email().split('@')[1]}`)
+doGetFakeContact = () => {
+  return (
+    fakeContact = {
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      emailAddress: '',
+      comments: faker.lorem.words(20)
+    },
+    fakeContact.emailAddress = doRemoveAccents(`${fakeContact.firstName.toLowerCase()
+      //    + faker.random.objectElement("!#$%&'*+-=?^_`~;.")
+      + faker.random.objectElement("-._")
+      + fakeContact.lastName.toLowerCase()
+      }@${faker.internet.email().split('@')[1]}`)
+  )
+}
 // Fill form
 fillForm = (fieldName) => {
+  doGetFakeContact();
   if (fieldName != 'firstName') {
     doSetValue(firstNameField.locator, fakeContact.firstName);
   }
