@@ -142,8 +142,16 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
-
+    //reporters: ['spec'],
+    reporters: [
+        'spec',
+        ['junit', {
+            outputDir: './reports/junit-results/',
+            outputFileFormat: function (options) { // optional
+                return `${options.cid}-${options.capabilities.browserName}.xml`
+            }
+        }]
+    ],
 
 
     //
@@ -166,8 +174,8 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    //onPrepare: function (config, capabilities, specs) {
+    //},
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -177,8 +185,8 @@ exports.config = {
      * @param  {[type]} args     object that will be merged with the main configuration once worker is initialised
      * @param  {[type]} execArgv list of string arguments passed to the worker process
      */
-    // onWorkerStart: function (cid, caps, specs, args, execArgv) {
-    // },
+    //onWorkerStart: function (cid, caps, specs, args, execArgv) {
+    //},
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.
@@ -186,8 +194,8 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    // beforeSession: function (config, capabilities, specs) {
-    // },
+    //beforeSession: function (config, capabilities, specs) {
+    //},
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
@@ -207,8 +215,8 @@ exports.config = {
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
      */
-    // beforeSuite: function (suite) {
-    // },
+    //beforeSuite: function (suite) {
+    //},
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
