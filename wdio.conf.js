@@ -150,6 +150,12 @@ exports.config = {
             outputFileFormat: function (options) { // optional
                 return `${options.cid}-${options.capabilities.browserName}.xml`
             }
+        }],
+        ['json', {
+            outputDir: './reports/json-results/',
+            outputFileFormat: function (options) { // optional
+                return `${options.cid}-${options.capabilities.browserName}.json`
+            }
         }]
     ],
 

@@ -21,7 +21,8 @@
     "chromedriver": "^85.0.1",
     "faker-br": "^0.3.0",
     "sync-request": "^6.1.0",
-    "wdio-chromedriver-service": "^6.0.4"
+    "wdio-chromedriver-service": "^6.0.4",
+    "wdio-json-reporter": "^2.0.0"
   },
   "dependencies": {}
 }
