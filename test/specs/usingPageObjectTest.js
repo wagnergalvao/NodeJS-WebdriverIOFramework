@@ -11,7 +11,7 @@ beforeEach(() => {
   accessContactUsPage();
 })
 
-describe('Testar o formulário de contato', () => {
+describe('Testar o formulário de contato Page Object', () => {
 
   it('Deve enviar mensagem com sucesso', () => {
     submitFormSuccessfully();

@@ -19,7 +19,7 @@ beforeEach(() => {
   email = doRemoveAccents(email);
 })
 
-describe('Testar o formulário de contato', () => {
+describe('Testar o formulário de contato original', () => {
 
   it('Deve enviar mensagem com sucesso', () => {
     browser.$('[name="first_name"]').setValue(firstName);

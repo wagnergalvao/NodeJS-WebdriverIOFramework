@@ -3,9 +3,6 @@ describe('Teste a página inicial da webdriveruniversity', function () {
   it('Validar a miniatura da promoção udemy na página inicial', () => {
     browser.maximizeWindow();
     browser.url('./');
-    browser.pause(2000);
-    //    var divCarouselHeight = browser.getCssProperty('#udemy-promo-thumbnail', 'height');
-    //    console.log(divCarouselHeight);
     expect(browser
       .$('#udemy-promo-video')
       .getAttribute('src')

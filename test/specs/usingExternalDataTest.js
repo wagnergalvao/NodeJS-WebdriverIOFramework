@@ -12,7 +12,7 @@ beforeEach(() => {
   lastName = faker.name.lastName();
 })
 
-describe('Testar o formulário de contato', () => {
+describe('Testar o formulário de contato External Data', () => {
   var res = request('GET', 'http://jsonplaceholder.typicode.com/posts/1/comments');
   var contactusDetails = JSON.parse(res.getBody().toString('utf8'));
 

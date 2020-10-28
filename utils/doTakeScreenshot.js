@@ -1,0 +1,1 @@
+exports.doTakeScreenshot = () => { browser.takeScreenshot() };

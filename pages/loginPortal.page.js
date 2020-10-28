@@ -2,6 +2,7 @@ const faker = require("faker-br");
 const { doAcceptAlert } = require("../utils/doAcceptAlert");
 const { doGetAlertText } = require("../utils/doGetAlertText");
 const { doSwitchToWindow } = require("../utils/doSwitchToWindow");
+const { doTakeScreenshot } = require("../utils/doTakeScreenshot");
 
 class LoginPortalPage {
   // Page Elements

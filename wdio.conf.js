@@ -156,6 +156,11 @@ exports.config = {
             outputFileFormat: function (options) { // optional
                 return `${options.cid}-${options.capabilities.browserName}.json`
             }
+        }],
+        ['allure', {
+            outputDir: './reports/allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
         }]
     ],
 
@@ -243,8 +248,9 @@ exports.config = {
     /**
      * Function to be executed after a test (in Mocha/Jasmine).
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: function (test, context, { error, result, duration, passed, retries }) {
+        if (error) browser.takeScreenshot();
+    },
 
 
     /**
@@ -260,8 +266,8 @@ exports.config = {
      * @param {Number} result 0 - command success, 1 - command error
      * @param {Object} error error object if any
      */
-    // afterCommand: function (commandName, args, result, error) {
-    // },
+    afterCommand: function (commandName, args, result, error) {
+    },
     /**
      * Gets executed after all tests are done. You still have access to all global variables from
      * the test.
@@ -269,8 +275,8 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
-    // },
+    //after: function (result, capabilities, specs) {
+    //},
     /**
      * Gets executed right after terminating the webdriver session.
      * @param {Object} config wdio configuration object
