@@ -1,4 +1,4 @@
-const faker = require("faker-br");
+var faker = require("faker-br");
 const { doAcceptAlert } = require("../utils/doAcceptAlert");
 const { doGetAlertText } = require("../utils/doGetAlertText");
 const { doSwitchToWindow } = require("../utils/doSwitchToWindow");

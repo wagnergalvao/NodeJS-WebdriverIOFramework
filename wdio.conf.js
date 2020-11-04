@@ -187,7 +187,14 @@ exports.config = {
      */
     onPrepare: function (config, capabilities, specs) {
         const del = require('del');
-        del(['allure-report', 'reports']);
+        const fs = require('fs');
+
+        fs.access('allure-report', fs.constants.F_OK, (err) => {
+            if (!err) del('allure-report')
+        });
+        fs.access('reports', fs.constants.F_OK, (err) => {
+            if (!err) del('reports')
+        });
     },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -268,8 +275,8 @@ exports.config = {
      * @param {Number} result 0 - command success, 1 - command error
      * @param {Object} error error object if any
      */
-    afterCommand: function (commandName, args, result, error) {
-    },
+    //afterCommand: function (commandName, args, result, error) {
+    //},
     /**
      * Gets executed after all tests are done. You still have access to all global variables from
      * the test.
